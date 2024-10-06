@@ -32,19 +32,23 @@ public class SensorClient {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(sensors.size());
 
         for (SensorProducer sensor : sensors) {
-            executor.scheduleAtFixedRate(() -> sendData(sensor), 0, 50, TimeUnit.MILLISECONDS);
+            executor.scheduleAtFixedRate(() -> sendData(sensor), 0, 1000, TimeUnit.MILLISECONDS);
         }
     }
 
     private void sendData(SensorProducer sensor) {
-        SensorMessage message = sensor.generateData();
+        List<SensorMessage> messages = new ArrayList<>();
+        for (int i = 0 ; i < 20 ; i++) {
+            SensorMessage message = sensor.generateData();
+            messages.add(message);
+        }
         System.out.println("Sending data for sensor: " + sensor.getId());
 
         try {
-            restTemplate.postForObject(serverUrl + "/api/measurements", message, Void.class);
+            restTemplate.postForObject(serverUrl + "/api/measurements", messages, Void.class);
         }
         catch(Exception e){
-            System.out.println(e);
+            System.exit(0);
         }
     }
 }
