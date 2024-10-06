@@ -1,7 +1,7 @@
 package com.example.SensorClient;
 
 import com.example.SensorClient.Domain.Common.SensorMessage;
-import com.example.SensorClient.Producers.SensorProducer;
+import com.example.SensorClient.Domain.Producers.SensorProducer;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -27,15 +27,24 @@ public class SensorClient {
     }
 
     public void start() {
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(this::sendData, 0, 50, TimeUnit.MILLISECONDS);
+        System.out.println("Clients have started.");
+
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(sensors.size());
+
+        for (SensorProducer sensor : sensors) {
+            executor.scheduleAtFixedRate(() -> sendData(sensor), 0, 50, TimeUnit.MILLISECONDS);
+        }
     }
 
-    private void sendData() {
-        List<SensorMessage> batch = sensors.stream()
-                .map(SensorProducer::generateData)
-                .collect(Collectors.toList());
+    private void sendData(SensorProducer sensor) {
+        SensorMessage message = sensor.generateData();
+        System.out.println("Sending data for sensor: " + sensor.getId());
 
-        restTemplate.postForObject(serverUrl + "/api/measurements", batch, Void.class);
+        try {
+            restTemplate.postForObject(serverUrl + "/api/measurements", message, Void.class);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 }
