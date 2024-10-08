@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-app-v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer-app-v1
+  template:
+    metadata:
+      labels:
+        app: producer-app-v1
+    spec:
+      containers:
+        - name: producer-app-v1
+          image: producer-app-v1:latest
+          imagePullPolicy: Never  # Local only
+          ports:
+            - containerPort: 8080
+      initContainers:
+        - name: wait-for-consumer
+          image: busybox
+          command: ['sh', '-c', 'until nc -z consumer-service 8090; do echo waiting for consumer; sleep 5; done;']
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: producer-service
+spec:
+  selector:
+    app: producer-app-v1
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

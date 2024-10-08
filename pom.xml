@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>SensorClient</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>producer-app</artifactId>
+	<version>v1</version>
 	<name>SensorClient</name>
 	<description>Sensor Clientside application</description>
 	<url/>
