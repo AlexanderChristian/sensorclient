@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -38,13 +39,21 @@ public class SensorClient {
 
     @CircuitBreaker(name = "sensorMessageSender", fallbackMethod = "fallbackMethod")
     public void sendData(SensorProducer sensor) {
+        Random random = new Random(System.nanoTime());
         List<SensorMessage> messages = new ArrayList<>();
         for (int i = 0; i < 800; i++) {
             SensorMessage message = sensor.generateData();
             messages.add(message);
         }
         try {
-            feignClient.sendBulkMessages(messages);
+            if (random.nextInt() % 2 == 0) {
+                System.out.println("Sending bulk");
+                feignClient.sendBulkMessages(messages);
+            }
+            else{
+                System.out.println("Sending one");
+                feignClient.sendSingleMessage(messages.get(0));
+            }
         }
         catch (Exception e){
             fallbackMethod(sensor, e);

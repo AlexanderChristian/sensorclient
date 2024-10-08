@@ -15,6 +15,6 @@ public interface SensorFeignClient {
     void sendBulkMessages(@RequestBody List<SensorMessage> bulkMessages);
 
     // Endpoint for a single message
-    @PostMapping("/api/measurements")
+    @PostMapping("/api/measurement")
     void sendSingleMessage(@RequestBody SensorMessage message);
 }
