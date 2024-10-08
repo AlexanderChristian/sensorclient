@@ -13,6 +13,6 @@ public class SensorClientRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        sensorClient.start();
+        sensorClient.start(args);
     }
 }

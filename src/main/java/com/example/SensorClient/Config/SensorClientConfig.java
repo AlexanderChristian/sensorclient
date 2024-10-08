@@ -16,7 +16,7 @@ public class SensorClientConfig {
 
     @Bean
     public SensorClient sensorClient() {
-        SensorClient sensorClient = new SensorClient(serverUrl);
+        SensorClient sensorClient = new SensorClient();
 
         sensorClient.addSensor(new AccelerometerSensor("ACC001", ACCELEROMETER, "g-force"));
         sensorClient.addSensor(new AccelerometerSensor("ACC002", ACCELEROMETER, "m/s^2"));

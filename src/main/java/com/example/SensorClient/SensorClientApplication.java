@@ -4,8 +4,10 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableFeignClients
 public class SensorClientApplication {
 
     @Autowired
@@ -13,11 +15,6 @@ public class SensorClientApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SensorClientApplication.class, args);
-    }
-
-    @PostConstruct
-    public void startSensors() {
-        sensorClientRunner.run();
     }
 
 }
