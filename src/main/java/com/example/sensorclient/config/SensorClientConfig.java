@@ -1,12 +1,12 @@
-package com.example.SensorClient.Config;
+package com.example.sensorclient.config;
 
-import com.example.SensorClient.Domain.Producers.AccelerometerSensor;
-import com.example.SensorClient.SensorClient;
+import com.example.sensorclient.domain.producers.AccelerometerSensor;
+import com.example.sensorclient.SensorClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.example.SensorClient.Domain.Constants.ACCELEROMETER;
+import static com.example.sensorclient.domain.Constants.ACCELEROMETER;
 
 @Configuration
 public class SensorClientConfig {

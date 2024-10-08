@@ -1,7 +1,7 @@
-package com.example.SensorClient;
+package com.example.sensorclient;
 
-import com.example.SensorClient.Domain.Common.SensorMessage;
-import com.example.SensorClient.Domain.Producers.SensorProducer;
+import com.example.sensorclient.domain.common.SensorMessage;
+import com.example.sensorclient.domain.producers.SensorProducer;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

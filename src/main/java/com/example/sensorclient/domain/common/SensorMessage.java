@@ -1,4 +1,4 @@
-package com.example.SensorClient.Domain.Common;
+package com.example.sensorclient.domain.common;
 
 import java.time.Instant;
 import java.util.Objects;

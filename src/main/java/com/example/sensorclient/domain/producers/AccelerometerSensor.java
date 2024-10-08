@@ -1,6 +1,6 @@
-package com.example.SensorClient.Domain.Producers;
+package com.example.sensorclient.domain.producers;
 
-import com.example.SensorClient.Domain.Common.SensorMessage;
+import com.example.sensorclient.domain.common.SensorMessage;
 
 import java.time.Instant;
 import java.util.Random;

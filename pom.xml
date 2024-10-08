@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>producer-app</artifactId>
 	<version>v1</version>
-	<name>SensorClient</name>
+	<name>sensorclient</name>
 	<description>Sensor Clientside application</description>
 	<url/>
 	<licenses>

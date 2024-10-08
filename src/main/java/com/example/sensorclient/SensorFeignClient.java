@@ -1,6 +1,6 @@
-package com.example.SensorClient;
+package com.example.sensorclient;
 
-import com.example.SensorClient.Domain.Common.SensorMessage;
+import com.example.sensorclient.domain.common.SensorMessage;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

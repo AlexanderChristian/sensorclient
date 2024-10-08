@@ -1,4 +1,4 @@
-package com.example.SensorClient;
+package com.example.sensorclient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
