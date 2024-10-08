@@ -41,7 +41,7 @@ public class SensorClient {
     public void sendData(SensorProducer sensor) {
         Random random = new Random(System.nanoTime());
         List<SensorMessage> messages = new ArrayList<>();
-        for (int i = 0; i < 800; i++) {
+        for (int i = 0; i < 20; i++) {
             SensorMessage message = sensor.generateData();
             messages.add(message);
         }
